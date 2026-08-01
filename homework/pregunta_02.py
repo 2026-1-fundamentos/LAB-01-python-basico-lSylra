@@ -15,3 +15,15 @@ def pregunta_02():
     [('A', 8), ('B', 7), ('C', 5), ('D', 6), ('E', 14)]
 
     """
+    contador = {}
+    with open("files/input/data.csv", "r") as archivo:
+        for linea in archivo:
+            letra = linea[0]
+            if letra in contador:
+                contador[letra] += 1
+            else:
+                contador[letra] = 1
+
+    resultado = sorted(contador.items())
+
+    return resultado

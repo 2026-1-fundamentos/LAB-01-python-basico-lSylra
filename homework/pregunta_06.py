@@ -26,3 +26,22 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
+    claves = {}
+    with open("files/input/data.csv", "r") as file:
+        for line in file:
+            parts = line.strip().split("\t")
+            dict_part = parts[4]
+            items = dict_part.split(",")
+            for item in items:
+                key, value = item.split(":")
+                value = int(value)
+                if key not in claves:
+                    claves[key] = [value, value]
+                else:
+                    if value < claves[key][0]:
+                        claves[key][0] = value
+                    if value > claves[key][1]:
+                        claves[key][1] = value
+
+    result = [(key, claves[key][0], claves[key][1]) for key in sorted(claves.keys())]
+    return result
